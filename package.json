@@ -6,7 +6,8 @@
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "npm run dev --prefix server",
-    "client": "npm start --prefix client"
+    "client": "npm start --prefix client",
+    "build": "react-scripts build"
   },
   "keywords": [],
   "author": "",

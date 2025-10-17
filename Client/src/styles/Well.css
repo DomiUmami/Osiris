@@ -1,0 +1,38 @@
+.buttons-container {
+  grid-column-gap: 0px;
+  grid-row-gap: 15px;
+  grid-template-rows: auto;
+  grid-template-columns: auto auto;
+  grid-auto-columns: 1fr;
+  justify-content: space-between;
+  place-items: center start;
+  display: grid;
+}
+.button-text {
+  z-index: 1;
+  color: var(--white);
+  font-size: 1.5vw;
+  font-weight: 500;
+  line-height: 1.2;
+  position: relative;
+}
+.button-arrow-wrap {
+  z-index: 0;
+  justify-content: flex-end;
+  width: 90%;
+  font-size: 1vw;
+  display: flex;
+  position: absolute;
+  right: .375vw;
+}
+.button-arrow-circle {
+  background-color: var(--white);
+  border-radius: 3.25vw;
+  justify-content: flex-end;
+  align-items: center;
+  width: 3.25vw;
+  height: 3.25vw;
+  margin-left: .8125vw;
+  padding-right: .75vw;
+  display: flex;
+}

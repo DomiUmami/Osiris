@@ -1,0 +1,75 @@
+.project-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0.5rem;
+  width: auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.card-description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
+}
+
+.card-link {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  background-color: #4ae7b3;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+.card-view {
+  align-self: flex-end;
+  background-color: #4ae7b3;
+  max-width: 5rem;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.25s ease, transform 0.1s ease;
+}
+
+.card-link:hover {
+  background-color: #b7ffe7;
+  transform: translateX(-2px);
+}
+.card-view:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+}
+
+.project-card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards ease-out;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
