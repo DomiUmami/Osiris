@@ -4,10 +4,10 @@
   "description": "MongoDB Trials with React Frontend",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build --prefix client",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "npm run dev --prefix server",
-    "client": "npm start --prefix client",
-    "build": "npm run build --prefix client"
+    "client": "npm start --prefix client"
   },
   "keywords": [],
   "author": "",
