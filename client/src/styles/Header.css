@@ -43,6 +43,7 @@
 .nav {
   position: relative;
 }
+
 .nav2 {
   left: 10rem;
   gap: calc(2rem);
