@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const { exec } = require('child_process');
-require('dotenv/lib/main').config();
+require('dotenv').config();
 
 const osirisRouter = require('./src/routers/osirisRouter');
 const saintRouter = require('./src/saint/router')
