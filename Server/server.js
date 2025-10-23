@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 require('dotenv').config();
 
 const osirisRouter = require('./src/routers/osirisRouter');
+const saintRouter = require('./src/saint/router')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/api/tests', osirisRouter);
+app.use('/api/saint', saintRouter);
 
 
 app.get('*', (req, res) => {
