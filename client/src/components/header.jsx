@@ -51,11 +51,10 @@ const goContact = () => {
         </button>
         {isOpen && (
           <ul className="dropdown-menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/cred">Credentialing</a></li>
             <li><a href="https://duminimumcontact.vercel.app/contact">Contact</a></li>
+            <li><a href="https://duminimumreactics.vercel.app/cred">Credentialing</a></li>
             <li><a href="https://duminimumosiris.vercel.app">Osiris</a></li>
-            <li><a href="/verity">Verity</a></li>
+            <li><a href="https://duminimumreactics.vercel.app/verity">Verity</a></li>
           </ul>
         )}
       </nav>
