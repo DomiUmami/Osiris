@@ -15,10 +15,12 @@
 }
 
 .links{
-    display: flex;
+    display: inline;
+    margin-right: 1rem;
 }
+
 .links:hover {
-    color: blue;
+    color: rgb(190, 241, 250);
     transform: translateY(-1px);
   }
 
@@ -42,7 +44,7 @@
   position: relative;
 }
 .nav2 {
-  display: flex;
+  left: 10rem;
   gap: calc(2rem);
   cursor: pointer;
 }

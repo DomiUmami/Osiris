@@ -29,6 +29,10 @@ const goHome = () => {
     // External link (different domain)
     window.location.href = "https://duminimumreactics.vercel.app/";
   };
+const goContact = () => {
+    // External link (different domain)
+    window.location.href = "https://duminimumcontact.vercel.app/";
+  };
 
   return (
        <header className="header">
@@ -37,38 +41,10 @@ const goHome = () => {
       </h1>
 
         <nav className="nav2" >
-        <h1 className="links">Placeholder</h1>
-               {isHover && (
-          <ul className="links-menu">
+        <h1 className="links" onClick={goContact}>Contact</h1>
+        <h1 className="links" >Placeholder</h1>
+        
 
-            <li><a href="/contact">Contact</a></li>
-
-          </ul>
-        )}
-        <h1 className="links">Placeholder</h1>
-               {isHover && (
-          <ul className="links-menu">
-
-            <li><a href="/contact">Contact</a></li>
-
-          </ul>
-        )}
-        <h1 className="links">Placeholder</h1>
-               {isHover && (
-          <ul className="links-menu">
-
-            <li><a href="/contact">Contact</a></li>
-
-          </ul>
-        )}
-        <h1 className="links">Placeholder</h1>
-               {isHover && (
-          <ul className="links-menu">
-
-            <li><a href="/contact">Contact</a></li>
-
-          </ul>
-        )}
      </nav>
     </header>
   );
