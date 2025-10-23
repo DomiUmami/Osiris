@@ -19,25 +19,47 @@ function App() {
       <Header></Header>
 
       <aside className="sidebar">
-      something
+      <p className='project-card'>Something clever</p>
+      <p className='project-card'>Something clever</p>
+      <p className='project-card'>Something clever</p>
+      <p className='project-card'>Something clever</p>
+      <p className='project-card'>Something clever</p>
+      <p className='project-card'>Something clever</p>
       </aside>
 
       <main className="main">
     
-        <text className='text'>
+    
+        <text className='project-card'>
        "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
 "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
   </text>
-        <p>
+        <p className='card-description'>
        "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
 "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
   </p>
-  <button className='card-link'>Our Story</button>
+        <text className='project-card'>
+       "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+  </text>
+        <p className='card-description'>
+       "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+  </p>
+        <text className='project-card'>
+       "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+  </text>
+        <p className='card-description'>
+       "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+  </p>
+  
        
       </main>
 
       <aside className="rightside">
-      something
+    
       </aside>
 
       <Footer></Footer>
