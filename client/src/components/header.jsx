@@ -2,36 +2,50 @@ import React, { useState } from "react";
 import "../styles/Header.css";
 import { useLocation } from "react-router-dom";
 
+
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+  const toggleHover = () => {
+      if(addEventListener('mouseenter')){
+        setIsHover(!isHover);
+    }
+  };
 
-
-  const location = useLocation();
   const routeTitles = {
-    "/": "Home",
-    "/cred": "Credentialing App",
+    "https://duminimumcontact.vercel.app" : "Contact",
     "/contact": "Contact",
-    "/verity": "Verity",
-    "/osiris" : "Osiris"
+    
   };
 
   // Default fallback if path doesn’t match
-  const headerName = routeTitles[location.pathname] || "App";
- const goHome = () => {
+  const headerName = routeTitles[location.pathname] || "Home" /*This will change when more pages are set up*/;
+
+const goHome = () => {
     // External link (different domain)
     window.location.href = "https://duminimumreactics.vercel.app/";
+  };
+const goContact = () => {
+    // External link (different domain)
+    window.location.href = "https://duminimumcontact.vercel.app/";
   };
 
   return (
        <header className="header">
-      <h1 className="logo" onClick={goHome} style={{ cursor: "pointer" }}>
+      <h1 className="logo" onClick={goHome} >
         {headerName}
       </h1>
-      <nav className="nav">
+
+        <nav className="nav2" >
+        <h1 className="links" onClick={goContact}>Contact</h1>
+        <h1 className="links" >Placeholder</h1>
+     </nav>
+
+     <nav className="nav">
         <button className="dropdown-btn" onClick={toggleDropdown}>
           Menu ▼
         </button>
