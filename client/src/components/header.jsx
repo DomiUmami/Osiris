@@ -46,8 +46,10 @@ const goContact = () => {
      </nav>
 
      <nav className="nav">
-        <button className="dropdown-btn" onClick={toggleDropdown}>
-          Menu ▼
+        <button className="dropdown-btn" 
+        onMouseEnter={toggleDropdown}
+        >
+          Menu
         </button>
         {isOpen && (
           <ul className="dropdown-menu">
