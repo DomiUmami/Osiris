@@ -10,6 +10,11 @@ function Header() {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const oPen = () =>{
+  setIsOpen(!isOpen)
+  };
+
   const toggleHover = () => {
       if(addEventListener('mouseenter')){
         setIsHover(!isHover);
@@ -47,7 +52,7 @@ const goContact = () => {
 
      <nav className="nav">
         <button className="dropdown-btn" 
-        onMouseEnter={toggleDropdown}
+        onMouseEnter={oPen}
         >
           Menu
         </button>

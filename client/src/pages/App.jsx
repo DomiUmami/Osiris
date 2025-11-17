@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/App.css';
 /*import { useHistory } from 'react-router-dom';*/
+
 
 import Header from "../components/header.jsx";
 import Footer from '../components/footer.jsx';
@@ -21,9 +22,11 @@ import "../styles/Temp.css"
 
 function App() {
 
-  
-  return (
-    <div className="grid-container">
+   const [isHunted, setIsHunted] = useState(false);
+
+
+     return (
+       <div className="grid-container">
       <Header></Header>
 
       <aside className="sidebar">
@@ -38,9 +41,10 @@ function App() {
     
       </aside>
 
-      <Footer></Footer>
+   
     </div>
   );
 }
+
 
 export default App;

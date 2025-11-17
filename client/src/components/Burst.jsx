@@ -5,7 +5,7 @@ import "../styles/Cards.css";
 
 export default function Burst({ hunt }) {
     const [imageUrl, setImageUrl] = useState(null);
-    const [hunted, setHunted] = useState(null)
+    const [hunted, setHunted] = useState(null);
 
     const fallbackImage = "https://monsterhunterwiki.org/images/2/2b/MHWI-Question_Mark_Icon.png";
     const monnaName = hunt.name
@@ -70,7 +70,7 @@ export default function Burst({ hunt }) {
 
   console.log(hunt)
   return (
-    <div className="project-card">
+    <div className="project-card" >
               <img
           src={imageUrl}
           alt={`${hunt.name} Render`}
