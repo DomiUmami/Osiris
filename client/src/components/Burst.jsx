@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import "../styles/Cards.css";
+import StygianZinogreIcon from "../components/MHWI-Stygian_Zinogre_Icon.webp";
 
 
 
-export default function Burst({ hunt }) {
+
+export default function Burst({ hunt, onClick }) {
     const [imageUrl, setImageUrl] = useState(null);
-    const [hunted, setHunted] = useState(null);
+    
 
     const fallbackImage = "https://monsterhunterwiki.org/images/2/2b/MHWI-Question_Mark_Icon.png";
     const monnaName = hunt.name
@@ -15,7 +17,7 @@ export default function Burst({ hunt }) {
 
     /*
     Links to broken monster renders
-    Leshin - https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World/leshen-large-monster-monster-hunter-world-wiki-guide-mhw.jpg
+    
     */
     /*
     Links to broken icons
@@ -23,21 +25,7 @@ export default function Burst({ hunt }) {
     */
    
     const base = "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World";
-    const monnaRenders = [
-      `${base}/mhw-${monnaName}_render.png`,
-      `${base}/mhw-${monnaName}_render_001.png`,
-      `${base}/mhw-${monnaName}_and_bristly_crake_render_001.png`,
-      `${base}/mhwi-${monnaName}_render_001.png`,
-      `${base}/mhgen-${monnaName}_render_001.png`,
-      `${base}/mhw-${monnaName}_render_002_(1).png`,
-      `${base}/gthumbnails/mhwi-${monnaName}_render_2.png`,
-      `${base}/${monnaName}.png`,
-      `${base}/${monnaName}s.png`,
-      `${base}/mhw-${monnaName}.png`,
-      `${base}/mhwi-${monnaName}.png`,
-      `${base}/${monnaName}_mhw.png`,
-      `${base}/${monnaName}-large-monster-monster-hunter-world-wiki-guide-mhw.jpg`,
-    ];
+
 
     const monnaIcons = [
       `${base}/${monnaName}_icon.png`,
@@ -45,46 +33,51 @@ export default function Burst({ hunt }) {
       `${base}/mhw-${monnaName}_icon.png`,
       `${base}/mhw-${monnaName}_icon2.png`,
       `${base}/mhw-icono_${monnaName}.png`,
+      `https://static.wikia.nocookie.net/monsterhunter/images/f/f3/MHWI-${monnaName}_Icon.png/revision/latest?cb=20210724012446`,
     ];
 
-      useEffect(() => {
-    let found = false;
+useEffect(() => {
+  const fetchImage = async () => {
+    // Special case for Stygian Zinogre
+    if (hunt.name === "Stygian Zinogre") {
+      setImageUrl(
+       StygianZinogreIcon
+      );
+      return; // stop the loop completely
+    }
 
-    (async () => {
-      for (const url of monnaIcons) {
-        try {
-          const res = await fetch(url, { method: "HEAD" });
-          if (res.ok) {
-            setImageUrl(url);
-            found = true;
-            break;
-          }
-        } catch {
-          // ignore and continue
+    // Otherwise, try the normal icons
+    for (const url of monnaIcons) {
+      try {
+        const res = await fetch(url, { method: "HEAD" });
+        if (res.ok) {
+          setImageUrl(url);
+          return;
         }
+      } catch {
+        // ignore
       }
-      if (!found) setImageUrl(fallbackImage);
-    })();
-  }, [hunt.name]);
+    }
+
+    // fallback if none work
+    setImageUrl(fallbackImage);
+  };
+
+  fetchImage();
+}, [hunt.name]);
 
 
-  console.log(hunt)
+
   return (
-    <div className="project-card" >
-              <img
+    <div className="project-card" onClick={onClick}>
+      
+              <img 
           src={imageUrl}
           alt={`${hunt.name} Render`}
           width={2}
           height={2}
-          style={{
-            borderRadius: "8px",
-            display: "flex",
-            flexDirection: "center",
-            marginBottom: "10px",
-            backgroundColor: "rgba(255, 0, 0, 0)",
-            padding: "4px",
-          }}
-        />
+          />
+
       
     </div>
   );
