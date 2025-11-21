@@ -400,7 +400,7 @@ html, body {
   /* monster-profile: disable sticky, let it flow */
   .monster-profile {
     position: static;
-    width: 90%;
+    width: 80%;
     height: 70vh;
     max-height: 70vh;
     padding: 0rem;
