@@ -31,10 +31,12 @@ const [hunted, setHunted] = useState(null)
       <Header></Header>
 
       <aside className="sidebar">
+   
       <Agape onHunted={setHunted}/>
       </aside>
 
       <main className="main">
+      
       {hunted ? (
           <PrimaryAmmo monster={hunted} />
         ) : (

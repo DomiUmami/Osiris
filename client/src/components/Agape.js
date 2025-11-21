@@ -27,7 +27,7 @@ export default function MonnaGenerator({ onHunted }) {
   if (!monsters.length) return <p>No Monsters found.</p>;
 
   return (
-    <div className="monster-list">
+    <div className="card-scroll-container">
       {monsters.map((monster) => (
         <Burst
           key={monster.id}

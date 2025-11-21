@@ -50,13 +50,11 @@ export default function PrimaryAmmo({ monster }) {
 
   return (
     <div className="monster-profile">
-      <h1 className="monster-name">{monster.name}</h1>
-
-      <img
+      <img className="img"
         src={imageUrl}
         alt={monster.name}
-      />
-
+        />
+      <h1 className="monster-name">{monster.name}</h1>
       <p className="monster-description">{monster.description}</p>
     </div>
   );

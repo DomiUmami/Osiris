@@ -69,16 +69,15 @@ useEffect(() => {
 
 
   return (
+    <div className="card-scroll-container">
     <div className="project-card" onClick={onClick}>
-      
               <img 
-          src={imageUrl}
-          alt={`${hunt.name} Render`}
-          width={2}
-          height={2}
-          />
-
-      
+              src={imageUrl}
+              alt={`${hunt.name} Render`}
+              width={2}
+              height={2}
+              />
+    </div>
     </div>
   );
 }

@@ -1,16 +1,35 @@
-/*------GRID------*/
+/* ============================
+   Global reset & base
+   ============================ */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Utility */
+.hidden-scrollbar::-webkit-scrollbar { display: none; }
+
+/* ============================
+   Layout (Desktop default)
+   ============================ */
 .grid-container {
   display: grid;
   width: 100%;
   min-height: 100vh;
+  gap: 10px;
 
   grid-template-areas:
     "header header header"
     "sidebar main rightside"
     "footer footer footer";
+
   grid-template-columns: 1fr 7fr 1fr;
   grid-template-rows: auto 1fr 60px;
-  gap: 10px;
 
   /* Background */
   background-image: url('https://i.imgur.com/T7iYj3z.jpeg');
@@ -19,118 +38,14 @@
   background-attachment: fixed;
 }
 
+/* Grid areas */
+.header    { grid-area: header; }
+.sidebar   { grid-area: sidebar; }
+.main      { grid-area: main; }
+.rightside { grid-area: rightside; }
+.footer    { grid-area: footer; }
 
-/* Grid Areas */
-.header {
-  grid-area: header;
-  background-color: #282c34;
-  padding: 0.1rem;
-  max-height: 1rem;
-}
-
-.sidebar {
-  margin-top: 1.9rem;
-  grid-area: sidebar;
-  background-color: #2b241b;
-  padding:  0rem ;
-  height: 100%;
-  width: 8rem;
-}
-
-.main {
-  grid-area: main;
-  padding: 2rem 6rem;
-}
-
-.main text{
-    font-size: 2rem;
-    color: aqua;
-}
-
-.main img{
-      flex: 1 1 600px;          /* flexible: grows/shrinks, but min ~200px */
-}
-
-.rightside {
-  margin-top: 5rem;
-  grid-area: rightside;
-  background-color: #eeeeee00;
-  padding: 1rem;
-}
-
-.img{
-      flex: 1 1 2rem;          /* flexible: grows/shrinks, but min ~200px */
-}
-
-.monster-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1rem;
-  justify-items: center;
-  align-items: start;
-  padding: 1rem;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1200px;
-}
-
-.monster-profile {
-  position: sticky;           /* changed from relative */
-  top: 5rem;                  /* distance from top of viewport */
-  width: 100%;
-  max-width: 1200px;
-  height: 80vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('https://img.freepik.com/premium-photo/beige-dirty-empty-old-paper-background-paper-texture_255485-443.jpg?semt=ais_hybrid&w=740&q=80');
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 20px;
-  padding: 1rem;
-  z-index: 10;               /* keep above other content */
-}
-
-
-.monster-profile img {
-  max-width: 90%;
-  max-height: 90%;
-  width: auto;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  object-fit: contain;        /* keeps image fully visible without deformation */
-}
-
-.monster-name {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 3rem;
-  font-weight: bold;
-  color: rgb(255, 233, 224);
-  text-shadow: 1px 1px 4px black;
-  text-align: center;
-}
-
-.monster-description {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.3rem;
-  color: white;
-  text-shadow: 1px 1px 4px black;
-  text-align: center;
-  max-width: 90%;
-}
-
-
-
-
-
+/* Header */
 .header {
   display: flex;
   position: fixed;
@@ -138,6 +53,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
+  max-height: 0.6rem;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
@@ -145,9 +61,9 @@
   color: white;
   transform: translateY(-15px);
   animation: fadeInUp 0.6s forwards ease-out;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Links / nav */
 .links {
   display: inline-block;
   margin-right: 1rem;
@@ -156,39 +72,9 @@
   font-weight: 500;
   transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
+.links:hover { transform: translateY(-6px); color: rgb(68,96,255); cursor: pointer; }
 
-.links:hover {
-  transform: translateY(-6px);
-  color: rgb(68, 96, 255);
-  cursor: pointer;
-}
-
-.links-menu {
-  position: relative;
-  top: 2rem;
-  background: white;
-  color: black;
-  list-style: none;
-  padding: 2rem;
-  margin: 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.logo {
-  cursor: pointer;
-}
-
-.nav {
-  position: relative;
-}
-
-.nav2 {
-  left: 10rem;
-  gap: calc(2rem);
-  cursor: default;
-}
-
+.nav { position: relative; }
 .dropdown-btn {
   background: none;
   border: none;
@@ -196,7 +82,6 @@
   font-size: 1rem;
   cursor: pointer;
 }
-
 .dropdown-menu {
   position: absolute;
   top: 2rem;
@@ -209,174 +94,76 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+.dropdown-menu li { padding: 0.5rem 1rem; }
+.dropdown-menu li:hover { background: #eee; }
 
-.dropdown-menu li {
-  padding: 0.5rem 1rem;
+/* Sidebar (desktop) */
+.sidebar {
+  margin-top: 2rem;
+  background-color: #2b241b;
+  padding: 0;
+  height: 100%;
+  width: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.dropdown-menu li:hover {
-  background: #eee;
+/* Main content (desktop) */
+.main {
+  padding: 2rem 6rem;
+  margin-top: 2rem; /* offset for fixed header */
 }
 
-.buttons-container {
-  grid-column-gap: 0px;
-  grid-row-gap: 15px;
-  grid-template-rows: auto;
-  grid-template-columns: auto auto;
-  grid-auto-columns: 1fr;
-  justify-content: space-between;
-  place-items: center start;
+/* Rightside (desktop) */
+.rightside {
+  margin-top: 5rem;
+  background-color: transparent;
+  padding: 1rem;
+}
+
+/* ============================
+   Monster grid & cards
+   ============================ */
+.monster-grid {
   display: grid;
-}
-.button-text {
-  z-index: 1;
-  color: var(--white);
-  font-size: 1.5vw;
-  font-weight: 500;
-  line-height: 1.2;
-  position: relative;
-}
-.button-arrow-wrap {
-  z-index: 0;
-  justify-content: flex-end;
-  width: 90%;
-  font-size: 1vw;
-  display: flex;
-  position: absolute;
-  right: .375vw;
-}
-.button-arrow-circle {
-  background-color: var(--white);
-  border-radius: 3.25vw;
-  justify-content: flex-end;
-  align-items: center;
-  width: 3.25vw;
-  height: 3.25vw;
-  margin-left: .8125vw;
-  padding-right: .75vw;
-  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  align-items: start;
+  padding: 1rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.footer {
-  align-items: center;
-  padding: 0.5rem;
-  background: #282c34;
-  color: white;
-  transform: translateY(15px);
-  animation: fadeInUp 0.6s forwards ease-out;
-  margin-top: auto; /* push footer to bottom */
-}
-
-.nav {
-  position: relative;
-}
-
-.footer {
-  grid-area: footer;
-  background-color: #282c34;
-  color: white;
-  text-align: left;
-  padding: 0.1rem 1rem;
-  font-size: auto;
-}
-.footer a {
-  color: #61dafb; /* styled link color */
-  text-decoration: none;
-}
-.footer a:hover {
-  text-decoration: underline;
-}
-
-/* Overall container styling */
-.profile-container {
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    justify-content: flex-start;
-    align-items: center;
-    background-color: #f9f9f9; /* Light background */
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    max-width: 400px; /* Centered and compact */
-    margin: 20px auto;
-  }
-  
-  /* Profile picture styling */
-  .profile-picture {
-    width: 7rem;
-    height: 7rem;
-    border-radius: 50%; /* Circle image */
-    border: 4px solid #4ae7b3; /* Green border */
-    object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow */
-    margin-bottom: 15px; /* Space below picture */
-  }
-  
-  /* Name styling */
-  .profile-name {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 10px 0 5px;
-    color: #ffffe1; /* Darker text */
-    font-family: 'Arial', sans-serif;
-    text-align: center; /* Center align */
-  }
-  .profile-login {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px 0 5px;
-    color: #7a7a7a; /* Darker text */
-    font-family: 'Arial', sans-serif;
-    text-align: center; /* Center align */
-  }
-  
-  /* Email styling */
-  .profile-email {
-    font-size: 16px;
-    margin: 0;
-    color: #666; /* Gray text */
-    font-family: 'Arial', sans-serif;
-    text-align: center; /* Center align */
-  }
-  
-  /* Hover effect (Optional) */
-  .profile-container:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  }
-
-  .project-card {
+/* Project / Monster Card (single definition)
+   - use .project-card for cards used in .monster-grid
+*/
+.project-card {
   background: white;
   border-radius: 12px;
   padding: 0.75rem;
   margin: 0.75rem;
-  width: 5rem;
-  height: 5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 5rem;            /* desktop card width */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
+  /* entrance animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards ease-out;
+}
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(255, 176, 29, 0.616);
-}
-
-.card-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin: 0;
-  text-transform: capitalize;
-  color: #222;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
+  box-shadow: 0 8px 20px rgba(255,176,29,0.62);
 }
 
 .project-card img {
@@ -384,18 +171,25 @@
   width: 80px;
   height: 80px;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent;
   transition: transform 0.2s ease;
 }
 
-.card-description {
-  font-size: 1.5rem;
-  color: #555;
-  margin-bottom: 1.2rem;
-  flex-grow: 1;
+/* Card copy */
+.card-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0 0;
+  text-transform: capitalize;
+  color: #222;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
-.card-link {
+/* Buttons / links used inside card */
+.card-link, .card-view {
   display: inline-block;
   padding: 0.6rem 1rem;
   background-color: #4ae7b3;
@@ -405,106 +199,120 @@
   font-weight: 500;
   transition: background-color 0.25s ease, transform 0.1s ease;
 }
-.card-view {
-  align-self: flex-end;
-  background-color: #4ae7b3;
-  max-width: 5rem;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.25s ease, transform 0.1s ease;
-}
+.card-link:hover { background-color: #b7ffe7; transform: translateX(-2px); }
+.card-view:hover { background-color: #4338ca; transform: translateY(-2px); }
 
-.card-link:hover {
-  background-color: #b7ffe7;
-  transform: translateX(-2px);
-}
-.card-view:hover {
-  background-color: #4338ca;
-  transform: translateY(-2px);
-}
-
-.project-card {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s forwards ease-out;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.App {
+/* ============================
+   Monster Profile (main)
+   ============================ */
+.monster-profile {
+  position: sticky;
+  top: 5rem; /* distance from top of viewport */
+  width: 100%;
+  max-width: 1200px;
+  height: 80vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* take full screen height */
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://img.freepik.com/premium-photo/beige-dirty-empty-old-paper-background-paper-texture_255485-443.jpg?semt=ais_hybrid&w=740&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.img {
+  max-width: 80%;
+  max-height: 60%;
+  bottom: 14;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.monster-name {
+  position: static;
+  font-size: 3rem;
+  font-weight: bold;
+  color: rgb(255,233,224);
+  text-shadow: 1px 1px 4px black;
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 
-.App-logo {
-  height: 20vmin;
-  pointer-events: none;
+.monster-description {
+  position: static;
+  font-size: 1.2rem;
+  color: rgb(41, 40, 40);
+  text-shadow: 1px 1px 2px black;
+  text-align: center;
+  max-width: 90%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ============================
+   Profile container (small widgets)
+   ============================ */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  max-width: 400px;
+  margin: 20px auto;
 }
+.profile-picture {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border: 4px solid #4ae7b3;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  margin-bottom: 15px;
+}
+.profile-name { font-size: 2rem; font-weight: bold; color: #ffffe1; text-align:center; }
 
-.App-header {
+/* ============================
+   App / Footer / misc
+   ============================ */
+.App { display:flex; flex-direction:column; min-height:100vh; text-align:center; }
+.footer {
   background-color: #282c34;
-  min-height: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  text-align: left;
+  padding: 0.5rem 1rem;
+}
+.footer a { color: #61dafb; text-decoration:none; }
+.footer a:hover { text-decoration: underline; }
+
+/* Buttons container (keeps grid-like button layout) */
+.buttons-container {
+  display: grid;
+  grid-column-gap: 0;
+  grid-row-gap: 15px;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  place-items: center start;
 }
 
-.App-footer {
-  background-color: #282c34;
-  margin-top: auto; /* push footer to bottom */
-  min-height: 10%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Keyframes */
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.App-body {
-  background-color: #9ba7be;
-  min-height: 100vh;
-  min-width: 99%;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: left;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-
-.App-text {
-  min-height: 100vh;
-  min-width: 50%;
-  display: left;
-  align-items: center;
-  justify-content: left;
-  font-size: calc(10px + 2vmin);
-  color: rgb(221, 1, 1);
-}
-
+/* ============================
+   Forms + small responsive helpers
+   ============================ */
 .application-form {
   max-width: 90%;
-  min-height: 90%;
   margin: 2rem auto;
   padding: 2rem;
   background: #50677a;
@@ -513,116 +321,147 @@
   display: flex;
   flex-direction: column;
 }
+.row-form-group { display:flex; flex-wrap:wrap; gap:0.5rem 1rem; width:100%; }
+.row-form-group label { flex:1 1 200px; color:white; font-weight:bold; }
+.row-form-group input, .row-form-group select, .row-form-group textarea {
+  flex:2 1 300px; padding:0.5rem; border:1px solid #ccc; border-radius:3px; font-size:0.9rem; min-width:0;
+}
 
-.application-form h2 {
-  margin-bottom: 1rem;
+/* reduce-motion */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo { animation: App-logo-spin infinite 20s linear; }
+}
+@keyframes App-logo-spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+
+/* ============================
+   MOBILE OVERRIDES (max-width: 768px)
+   - sidebar becomes horizontal
+   - monster grid becomes horizontal scroll row
+   - monster-profile loses sticky
+   ============================ */
+@media (max-width: 768px) {
+
+  /* Prevent horizontal overflow */
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* single column stack */
+  .grid-container {
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "rightside"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto auto;
+    background-size: cover;
+    padding: 0;
+  }
+
+  /* header: remove translate to keep visible */
+  .header { transform: none; padding: 0.7rem; position: fixed; top:0; left:0; right:0; }
+  /* ensure content sits below fixed header */
+  .main, .sidebar, .rightside { margin-top: 4.25rem; }
+
+  /* full width main */
+  .main { padding: 1rem; }
+
+  /* sidebar -> horizontal bar */
+  .sidebar {
+    width: 100%;
+    height: 7rem;
+    margin-top: 1.4rem;
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;             /* allow scrolling */
+    overflow-y: hidden;           /* hide vertical overflow */
+    scrollbar-width: none;        /* Firefox hide scrollbar */
+    -ms-overflow-style: none;     /* IE hide scrollbar */
+  }
+  .sidebar * { flex: 0 0 auto; }
+  .sidebar::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+.sidebar * {
+    flex: 0 0 auto;               /* prevent shrinking/growing */
+}
+
+
+  /* rightside becomes section below main */
+  .rightside { width:100%; margin-top: 1rem; padding: 0.5rem; }
+
+  /* monster-profile: disable sticky, let it flow */
+  .monster-profile {
+    position: static;
+    width: 90%;
+    height: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+  .monster-name { font-size: 2rem; }
+  .monster-description { font-size: 1rem; }
+  .monster-profile img { max-width: 50%; height: auto; }
+
+  /* ---------- HORIZONTAL SCROLLING CARDS ---------- */
+  /* Add a wrapper around your cards in JSX: <div class="card-scroll-container"> ...cards... </div> */
+  .card-scroll-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0rem;
+    padding: 0.5rem;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+  }
+  .card-scroll-container.hidden-scrollbar::-webkit-scrollbar { display:none; }
+
+  /* adjust each card for mobile row */
+  .card-scroll-container .project-card {
+    flex: 0 0 auto;
+    width: 120px;            /* mobile card width */
+    min-width: 120px;
+    scroll-snap-align: start;
+    margin: 0;               /* spacing handled by gap on container */
+  }
+
+  /* make grid fallback not interfere on mobile */
+  .monster-grid { display: none; }
+
+  .monster-name {
+    text-align: center;
+  }
+
+  .monster-card-description {
+  font-size: 1rem;
+  color: #3b3b3b;
+  margin-top: 0.5rem;
   text-align: center;
-}
-
-.application-form-row {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap; /* keep fields on one line */
-}
-
-.application-form label {
-  display: flex;
-  max-width: auto;
-  max-height: 30px;
-  margin-bottom: 1rem;
-  margin-right: 1rem;
-  text-align: left;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 50%;
-  flex-wrap: nowrap; /* keep fields on one line */
-}
-
-.row-form-group {
-  display: flex;
-  flex-wrap: wrap;          /* allow label + input to wrap on smaller screens */
-  width: 100%;
-  gap: 0.5rem 1rem;         /* vertical + horizontal gap */
-  align-items: center;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
-}
-
-.row-form-group label {
-  flex: 1 1 200px;          /* flexible: grows/shrinks, but min ~200px */
-  text-align: left;
-  color: white;
-  font-weight: bold;
-  font-size: 0.9rem;
-  white-space: nowrap;      /* keep text on one line */
-}
-
-.row-form-group input,
-.row-form-group select,
-.row-form-group textarea {
-  flex: 2 1 300px;          /* flexible: grows/shrinks, min ~300px */
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 0.75rem;
-  min-width: 0;             /* prevents overflow in flexbox */
-  white-space: nowrap;      /* keep text on one line */
+  line-height: 1.2rem;
+  padding: 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
-
-.application-form select {
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255); /* <- this sets the visible background */
+  /* footer */
+  .footer { text-align:center; padding:1rem; margin-top: 2rem; }
 }
 
-
-
-.application-form textarea{
-  padding: 0.5rem;
-  font-size: 1rem;
-}
-
-.application-form button {
-  padding: 0.75rem;
-  font-size: 1rem;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-}
-
+/* Small screen form adjustments */
 @media (max-width: 600px) {
-  .row-form-group {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .row-form-group label {
-    width: 100%;
-    margin-bottom: 0.25rem;
-  }
-
-  .row-form-group input,
-  .row-form-group select,
-  .row-form-group textarea {
-    width: 100%;
-  }
+  .row-form-group { flex-direction: column; align-items: flex-start; }
+  .row-form-group label { width:100%; margin-bottom:0.25rem; }
+  .row-form-group input, .row-form-group select, .row-form-group textarea { width:100%; }
 }
 
+/* Final theme link color */
+.App-link { color: #61dafb; }
 
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-  
+/* End of stylesheet */
