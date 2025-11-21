@@ -401,7 +401,7 @@ html, body {
   .monster-profile {
     position: static;
     width: 90%;
-    height: 100vh;
+    height: 80vh;
     padding: 0rem;
     margin: 0rem 0;
   }
