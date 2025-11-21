@@ -367,7 +367,7 @@ html, body {
   /* header: remove translate to keep visible */
   .header { transform: none; padding: 0.7rem; position: fixed; top:0; left:0; right:0; }
   /* ensure content sits below fixed header */
-  .main, .sidebar, .rightside { margin-top: 4.25rem; }
+  .main, .sidebar, .rightside { margin-top: 1rem; }
 
   /* full width main */
   .main { padding: 1rem; }
@@ -382,7 +382,6 @@ html, body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem;
     overflow-x: auto;             /* allow scrolling */
     overflow-y: hidden;           /* hide vertical overflow */
     scrollbar-width: none;        /* Firefox hide scrollbar */
@@ -403,8 +402,8 @@ html, body {
     position: static;
     width: 90%;
     height: 100vh;
-    padding: 1rem;
-    margin: 0.5rem 0;
+    padding: 0rem;
+    margin: 0rem 0;
   }
   .monster-name { font-size: 2rem; }
   .monster-description { font-size: 1rem; }
