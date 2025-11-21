@@ -401,13 +401,13 @@ html, body {
   .monster-profile {
     position: static;
     width: 90%;
-    height: 100%;
+    height: 100vh;
     padding: 1rem;
     margin: 0.5rem 0;
   }
   .monster-name { font-size: 2rem; }
   .monster-description { font-size: 1rem; }
-  .monster-profile img { max-width: 50%; height: auto; }
+  .monster-profile img { max-width: 80%; height: auto; }
 
   /* ---------- HORIZONTAL SCROLLING CARDS ---------- */
   /* Add a wrapper around your cards in JSX: <div class="card-scroll-container"> ...cards... </div> */
