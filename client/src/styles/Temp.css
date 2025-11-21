@@ -407,7 +407,7 @@ html, body {
     margin: 0rem 0;
   }
   .monster-name { font-size: 2rem; }
-  .monster-description { font-size: 1vh; }
+  .monster-description { font-size: 1.5vh; }
   .monster-profile img { max-width: 70%; height: auto; }
 
   /* ---------- HORIZONTAL SCROLLING CARDS ---------- */
