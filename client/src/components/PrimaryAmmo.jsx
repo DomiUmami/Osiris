@@ -1,16 +1,36 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Cards.css";
 
+/*
+Check Links
+https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/mhwilds-lala_barina_render_001.png
+https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/mhwilds-arkveld_render_001.png
+https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/mhwilds-ajarakan_render_001.png
+https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/congalala_large_monster_monsters_mhwilds_wiki_guide300px.png
+https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/chatacabra-large-monster-mhwilds-wiki-guide-300px.png
+https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/mhwilds-guardian_rathalos_custom_render_001.png
+*/
+
 export default function PrimaryAmmo({ monster }) {
   const [imageUrl, setImageUrl] = useState(null);
 
   const fallbackImage =
     "https://monsterhunterwiki.org/images/2/2b/MHWI-Question_Mark_Icon.png";
 
-  const monsterName = monster.name
-    .toLowerCase()
-    .replace(/\s+/g, "_")
-    .replace(/-+/g, "-");
+const specialNames = {
+  "Omega Planetes": "omega-planetes", // special case
+};
+
+const monsterName = specialNames[monster.name]
+  || monster.name
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")          // remove accents
+      .replace(/[^a-z0-9\s\-'’]/g, "")         // keep letters, numbers, spaces, hyphens, apostrophes
+      .trim()
+      .replace(/\s+/g, "_")                     // spaces → underscores
+      .replace(/-+/g, "-");                     // multiple hyphens → single hyphen
+
 
   const base =
     "https://monsterhunterworld.wiki.fextralife.com/file/Monster-Hunter-World";
@@ -29,6 +49,10 @@ export default function PrimaryAmmo({ monster }) {
     `${base}/mhwi-${monsterName}.png`,
     `${base}/${monsterName}_mhw.png`,
     `${base}/${monsterName}-large-monster-monster-hunter-world-wiki-guide-mhw.jpg`,
+    `https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/mhwilds-${monsterName}_render_001.png`,
+    `https://monsterhunterwilds.wiki.fextralife.com/file/Monster-Hunter-Wilds/${monsterName}_monsterhunterwilds_wiki_guide300px.png`,
+    `https://static.wikia.nocookie.net/monsterhunter/images/6/6d/MHWilds-${monsterName}_Custom_Render_001.png/revision/latest?cb=20250413160814`,
+    `https://monsterhunterwilds.wiki.fextralife.com/${monsterName}`,
   ];
 
   useEffect(() => {
@@ -36,7 +60,7 @@ export default function PrimaryAmmo({ monster }) {
     (async () => {
       for (const url of renderUrls) {
         try {
-          const res = await fetch(url, { method: "HEAD" });
+          const res = await fetch(url);
           if (res.ok) {
             setImageUrl(url);
             found = true;
@@ -53,6 +77,11 @@ export default function PrimaryAmmo({ monster }) {
       <img className="img"
         src={imageUrl}
         alt={monster.name}
+        loading="lazy"
+         onError={e => {
+                e.target.onerror = null;
+                e.target.src = fallbackImage;
+              }}
         />
       <h1 className="monster-name">{monster.name}</h1>
       <p className="monster-description">{monster.description}</p>
