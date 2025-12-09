@@ -1,29 +1,16 @@
 import React, { useState } from "react";
 import "../styles/Header.css";
-import { useLocation } from "react-router-dom";
-
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHover, setIsHover] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const oPen = () =>{
-  setIsOpen(!isOpen)
-  };
-
-  const toggleHover = () => {
-      if(addEventListener('mouseenter')){
-        setIsHover(!isHover);
-    }
-  };
-
   const routeTitles = {
-    "https://duminimumcontact.vercel.app" : "Contact",
-    "/contact": "Contact",
+    "https://duminimumosiris.vercel.app" : "Osiris",
+    
     
   };
 
@@ -32,11 +19,7 @@ function Header() {
 
 const goHome = () => {
     // External link (different domain)
-    window.location.href = "https://duminimumreactics.vercel.app/";
-  };
-const goContact = () => {
-    // External link (different domain)
-    window.location.href = "https://duminimumcontact.vercel.app/";
+    window.location.href = "https://duminimum.vercel.app/";
   };
 
   return (
@@ -46,22 +29,23 @@ const goContact = () => {
       </h1>
 
         <nav className="nav2" >
-        <h1 className="links" onClick={goContact}>Contact</h1>
-        <h1 className="links" >Placeholder</h1>
+        <h2 className="links" >All</h2>
+        <h3 className="links" >MHW</h3>
+        <h3 className="links" >MHWilds</h3>
      </nav>
 
      <nav className="nav">
         <button className="dropdown-btn" 
-        onMouseEnter={oPen}
+        onClick={toggleDropdown}
         >
           Menu
         </button>
         {isOpen && (
           <ul className="dropdown-menu">
-            <li><a href="https://duminimumcontact.vercel.app/contact">Contact</a></li>
-            <li><a href="https://duminimumreactics.vercel.app/cred">Credentialing</a></li>
+            <li><a href="https://duminimumcontact.vercel.app">Contact</a></li>
+            <li><a href="https://duminimum.vercel.app/cred">Credentialing</a></li>
             <li><a href="https://duminimumosiris.vercel.app">Osiris</a></li>
-            <li><a href="https://duminimumreactics.vercel.app/verity">Verity</a></li>
+            <li><a href="https://duminimum.vercel.app/verity">Verity</a></li>
           </ul>
         )}
       </nav>

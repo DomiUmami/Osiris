@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Cards.css";
+import "../styles/Temp.css"
 import StygianZinogreIcon from "../components/MHWI-Stygian_Zinogre_Icon.webp";
 
 
