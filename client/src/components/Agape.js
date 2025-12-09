@@ -8,28 +8,36 @@ export default function MonnaGenerator({ onHunted }) {
   useEffect(() => {
     const fetchMonsters = async () => {
       try {
-        const res1 = await fetch("https://mhw-db.com/monsters");
-        const res2 = await fetch("https://wilds.mhdb.io/en/monsters");
+        const [res1, res2] = await Promise.all([
+          fetch("https://mhw-db.com/monsters"),
+          fetch("https://wilds.mhdb.io/en/monsters")
+        ]);
 
-        const data1 = await res1.json();
-        const data2 = await res2.json();
+        if (!res1.ok || !res2.ok) {
+          throw new Error("Failed to fetch monsters");
+        }
 
-        // --- 1. Make IDs unique ---
+        const [data1, data2] = await Promise.all([res1.json(), res2.json()]);
+
+        // --- 1. Track IDs from data1 ---
         const usedIds = new Set(data1.map(m => m.id));
 
+        // --- 2. Normalize and resolve ID collisions from data2 ---
         const fixedData2 = data2.map(m => {
-          let newId = m.id;
+          let newId = Number(m.id) || 0;
 
-          while (usedIds.has(newId)) newId++;
+          while (usedIds.has(newId)) {
+            newId++;
+          }
+
           usedIds.add(newId);
-
           return { ...m, id: newId };
         });
 
-        // --- 2. Merge & sort ---
+        // --- 3. Merge and sort ---
         const merged = [...data1, ...fixedData2].sort((a, b) => a.id - b.id);
 
-        // --- 3. Remove duplicate monster names ---
+        // --- 4. Remove duplicate monster names ---
         const seenNames = new Set();
         const unique = merged.filter(m => {
           if (seenNames.has(m.name)) return false;
@@ -39,7 +47,8 @@ export default function MonnaGenerator({ onHunted }) {
 
         setMonsters(unique);
       } catch (err) {
-        console.error(err);
+        console.error("Monster fetch error:", err);
+        setMonsters([]); // avoid undefined state
       } finally {
         setLoading(false);
       }
@@ -55,10 +64,10 @@ export default function MonnaGenerator({ onHunted }) {
     <div className="card-scroll-container">
       {monsters.map(monster => (
         <Burst
-          key={monster.id} // FIXED
+          key={monster.id}
           hunt={{
             name: monster.name,
-            description: monster.description || "No description available.",
+            description: monster.description || "No description available."
           }}
           onClick={() => onHunted(monster)}
         />
