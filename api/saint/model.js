@@ -14,7 +14,7 @@ export async function getAllSaintsMerged() {
   // Toggle data sources
   // -------------------------------
   const includeLocal = true;     // include mockData
-  const includeExternal1 = true; // external API 1
+  const includeExternal1 = false; // external API 1
   const includeExternal2 = false;// external API 2
 
   // -------------------------------
