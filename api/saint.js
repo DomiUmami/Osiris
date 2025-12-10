@@ -1,12 +1,12 @@
+// api/saint.js
 import { getAllSaintsMerged } from "./saint/model.js";
 
 export default async function handler(req, res) {
   try {
     const monsters = await getAllSaintsMerged();
 
-    // Ensure proper JSON headers
     res.setHeader("Content-Type", "application/json");
-    res.setHeader("Access-Control-Allow-Origin", "*"); // allow frontend requests
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
     res.status(200).json(monsters);
   } catch (err) {

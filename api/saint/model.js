@@ -1,7 +1,7 @@
-// src/saint/model.js
-import testData from "../../server/src/data/mockData";
+// api/saint/model.js
+import testData from "./mockData.js";
 
-// Fetch monsters from an external API
+// Fetch monsters from an external API safely
 export async function fetchExternalMonsters(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to fetch monsters from ${url}`);
@@ -11,42 +11,44 @@ export async function fetchExternalMonsters(url) {
 // Merge multiple data sources
 export async function getAllSaintsMerged() {
   // -------------------------------
-  // TOGGLE DATA SOURCES HERE
+  // Toggle data sources
   // -------------------------------
-
-  const includeLocal = false;         // include mockData
-  const includeExternal1 = true;     // include data1
-  const includeExternal2 = false;    // include data2
+  const includeLocal = true;     // include mockData
+  const includeExternal1 = true; // external API 1
+  const includeExternal2 = false;// external API 2
 
   // -------------------------------
-  // 1️⃣ Prepare local data
+  // Local data
   // -------------------------------
   let localMonsters = [];
-  if (includeLocal) {
-    localMonsters = testData;
-  }
+  if (includeLocal) localMonsters = testData;
 
   // -------------------------------
-  // 2️⃣ Prepare external data
+  // External data
   // -------------------------------
   let externalMonsters = [];
-
   if (includeExternal1) {
-    const data1 = await fetchExternalMonsters("https://mhw-db.com/monsters");
-    externalMonsters.push(...data1);
+    try {
+      const data1 = await fetchExternalMonsters("https://mhw-db.com/monsters");
+      externalMonsters.push(...data1);
+    } catch (e) {
+      console.warn("Failed to fetch external API 1:", e.message);
+    }
   }
 
   if (includeExternal2) {
-    const data2 = await fetchExternalMonsters("https://wilds.mhdb.io/en/monsters");
-    externalMonsters.push(...data2);
+    try {
+      const data2 = await fetchExternalMonsters("https://wilds.mhdb.io/en/monsters");
+      externalMonsters.push(...data2);
+    } catch (e) {
+      console.warn("Failed to fetch external API 2:", e.message);
+    }
   }
 
-
   // -------------------------------
-  // 3️⃣ Resolve ID collisions for local data
+  // Resolve ID collisions for local data
   // -------------------------------
   const usedIds = new Set(externalMonsters.map(m => m.id));
-
   const fixedLocal = localMonsters.map(m => {
     let newId = Number(m.id) || 0;
     while (usedIds.has(newId)) newId++;
@@ -55,13 +57,9 @@ export async function getAllSaintsMerged() {
   });
 
   // -------------------------------
-  // 4️⃣ Merge all data
+  // Merge and remove duplicates by name
   // -------------------------------
   const merged = [...externalMonsters, ...fixedLocal];
-
-  // -------------------------------
-  // 5️⃣ Remove duplicates by name
-  // -------------------------------
   const seenNames = new Set();
   const unique = merged.filter(m => {
     if (seenNames.has(m.name)) return false;
