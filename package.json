@@ -1,7 +1,7 @@
 {
   "name": "osiris-root",
   "version": "1.0.0",
-  "description": "MongoDB Trials with React Frontend",
+  "description": "React frontend with backend components",
   "main": "index.js",
   "scripts": {
     "build": "npm run build --prefix client",
