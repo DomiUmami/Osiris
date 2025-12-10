@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Burst from "./Burst";
 
+
 export default function MonnaGenerator({ onHunted }) {
   const [loading, setLoading] = useState(true);
   const [monsters, setMonsters] = useState([]);
