@@ -7,3 +7,4 @@ MongoDB Trials with React Frontend
 -Add Auth0 and wrap the app in it
 
 -Possible redux for the backend
+(Data toggle in model.js)
