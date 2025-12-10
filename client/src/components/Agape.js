@@ -5,30 +5,33 @@ export default function MonnaGenerator({ onHunted }) {
   const [loading, setLoading] = useState(true);
   const [monsters, setMonsters] = useState([]);
 
-  useEffect(() => {
-  const fetchMonsters = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/saint");
-      if (!res.ok) throw new Error("Failed to fetch monsters");
-      const data = await res.json();
-      setMonsters(data);
-    } catch (err) {
-      console.error("Monster fetch error:", err);
-      setMonsters([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-  fetchMonsters();
-}, []);
+  // Use environment variable
+  const API_URL = process.env.REACT_APP_API_URL;
 
+  useEffect(() => {
+    const fetchMonsters = async () => {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("Failed to fetch monsters");
+        const data = await res.json();
+        setMonsters(data);
+      } catch (err) {
+        console.error("Monster fetch error:", err);
+        setMonsters([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMonsters();
+  }, [API_URL]);
 
   if (loading) return <p>Locating Monsters...</p>;
   if (!monsters.length) return <p>No Monsters found.</p>;
 
   return (
     <div className="card-scroll-container">
-      {monsters.map(monster => (
+      {monsters.map((monster) => (
         <Burst
           key={monster.id}
           hunt={{
