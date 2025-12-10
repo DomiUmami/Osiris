@@ -1,5 +1,5 @@
 // src/saint/model.js
-import testData from "../data/mockData.js";
+import testData from "../../server/src/data/mockData";
 
 // Fetch monsters from an external API
 export async function fetchExternalMonsters(url) {
