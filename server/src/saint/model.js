@@ -2,11 +2,13 @@
 import testData from "../data/mockData.js";
 
 // Fetch monsters from an external API
-export async function fetchExternalMonsters(url) {
-  const res = await fetch(url);
+export async function fetchExternalMonsters() {
+  const res = await fetch("/api/saint");
   if (!res.ok) throw new Error(`Failed to fetch monsters from ${url}`);
   return res.json();
 }
+
+
 
 // Merge multiple data sources
 export async function getAllSaintsMerged() {
