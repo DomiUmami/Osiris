@@ -4,10 +4,10 @@ import { getAllSaintsMerged } from "./model.js";
 export default async function handler(req, res) {
   try {
     // Fetch all monsters (or saints) — returns mock data merged with any external sources if enabled
-    const saint = await getAllSaintsMerged();
+    const saints = await getAllSaintsMerged();
 
     // Send JSON response
-    res.status(200).json(saint);
+    res.status(200).json(saints);
   } catch (err) {
     console.error("Error in /api/saint:", err);
 
