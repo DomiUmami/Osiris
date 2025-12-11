@@ -1,4 +1,4 @@
-import { getAllSaintsMerged } from "../server/saint/model.js";
+import { getAllSaintsMerged } from "./model.js";
 
 export default async function handler(req, res) {
   try {
