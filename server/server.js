@@ -26,5 +26,5 @@ app.use("/api/saint", saintRouter);
 // START SERVER
 // -------------------------
 app.listen(5000, () => {
-  console.log("Backend running on http://localhost:5000");
+  console.log("Server Started");
 });
