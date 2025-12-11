@@ -10,9 +10,9 @@ useEffect(() => {
   const fetchMonsters = async () => {
     try {
       const res = await fetch("/api/saint");
-      console.log(res)
       if (!res.ok) throw new Error("Failed to fetch monsters");
       const data = await res.json();
+      console.log(res)
       setMonsters(data);
     } catch (err) {
       console.error("Monster fetch error:", err);
