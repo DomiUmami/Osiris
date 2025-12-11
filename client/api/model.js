@@ -9,8 +9,8 @@ export async function fetchExternalMonsters(url) {
 
 // Merge multiple data sources
 export async function getAllSaintsMerged() {
-  const includeLocal = true;
-  const includeExternal1 = true;
+  const includeLocal = false;
+  const includeExternal1 = false;
   const includeExternal2 = true;
 
   // 1️⃣ Prepare local data
