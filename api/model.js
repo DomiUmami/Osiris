@@ -1,10 +1,10 @@
 // src/saint/model.js
-import testData from "../data/mockData.js";
+import testData from "./mockData";
 
 // Fetch monsters from an external API
 export async function fetchExternalMonsters(url) {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`Failed to fetch monsters from ???`);
+  if (!res.ok) throw new Error(`Failed to fetch monsters from ${url}`);
   return res.json();
 }
 
