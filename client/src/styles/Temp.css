@@ -362,7 +362,8 @@ html, body {
     grid-template-areas:
       "header"
       "rightside"
-      "main";
+      "main"
+      "sidebar";
   
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr auto auto;
