@@ -18,7 +18,6 @@ useEffect(() => {
       if (isMounted) {
         setMonsters(data);
         setLoading(false);
-        console.log("these are being fetched")
       }
     } catch (err) {
       console.error("Monster fetch error:", err);
