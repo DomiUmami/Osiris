@@ -7,21 +7,35 @@ export default function MonnaGenerator({ onHunted }) {
   const [monsters, setMonsters] = useState([]);
 
 useEffect(() => {
+  let isMounted = true;
+
   const fetchMonsters = async () => {
     try {
       const res = await fetch("/api/saint");
-      console.log(res)
       if (!res.ok) throw new Error("Failed to fetch monsters");
       const data = await res.json();
-      setMonsters(data);
+
+      if (isMounted) {
+        setMonsters(data);
+        setLoading(false);
+        console.log("these are being fetched")
+      }
     } catch (err) {
       console.error("Monster fetch error:", err);
-    } finally {
-      setLoading(false);
+      if (isMounted) setLoading(false);
     }
   };
 
+  // Initial fetch
   fetchMonsters();
+
+  // 🔁 Poll every 15 seconds
+  const interval = setInterval(fetchMonsters, 15000);
+
+  return () => {
+    isMounted = false;
+    clearInterval(interval);
+  };
 }, []);
 
 
