@@ -29,7 +29,7 @@ html, body {
     "sidebar main rightside";
   
 
-  grid-template-columns: 1fr 7fr 1fr;
+  grid-template-columns: 1fr 7fr 8rem;
   grid-template-rows: auto 1fr 2rem;
 
   /* Background */
@@ -113,7 +113,7 @@ html, body {
 
 /* Rightside (desktop) */
 .rightside {
-  margin: 2rem 0rem 0rem;
+  margin: 2rem 0rem;
   background-color: #2b241b;
   padding: 0;
   height: 100%;
@@ -361,10 +361,9 @@ html, body {
   .grid-container {
     grid-template-areas:
       "header"
-      "sidebar"
-      "main"
       "rightside"
-      "footer";
+      "main";
+  
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr auto auto;
     background-size: cover;
@@ -394,7 +393,7 @@ html, body {
     scrollbar-width: none;        /* Firefox hide scrollbar */
     -ms-overflow-style: none;     /* IE hide scrollbar */
   }
-  .rightside * { flex: 0 0 auto; }
+  .rightside * { flex: 0 5 auto; }
   .rightside::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 .rightside * {
     flex: 0 0 auto;               /* prevent shrinking/growing */
