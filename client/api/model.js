@@ -1,4 +1,4 @@
-import testData from "../data/mockData.js";
+import testData from "./mockData.js";
 
 // ------------------------------------
 // CONFIG
