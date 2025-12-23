@@ -6,6 +6,7 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   width: 100%;
+  height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: Arial, Helvetica, sans-serif;
@@ -25,11 +26,11 @@ html, body {
 
   grid-template-areas:
     "header header header"
-    "sidebar main rightside"
-    "footer footer footer";
+    "sidebar main rightside";
+  
 
   grid-template-columns: 1fr 7fr 1fr;
-  grid-template-rows: auto 1fr 60px;
+  grid-template-rows: auto 1fr 2rem;
 
   /* Background */
   background-image: url('https://i.imgur.com/T7iYj3z.jpeg');
@@ -99,16 +100,9 @@ html, body {
 
 /* Sidebar (desktop) */
 .sidebar {
-  margin-top: 2rem;
-  background-color: #2b241b;
-  padding: 0;
-  height: 100%;
-  width: 8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-  justify-content: flex-start;
+  margin-top: 5rem;
+  background-color: transparent;
+  padding: 1rem;
 }
 
 /* Main content (desktop) */
@@ -119,9 +113,16 @@ html, body {
 
 /* Rightside (desktop) */
 .rightside {
-  margin-top: 5rem;
-  background-color: transparent;
-  padding: 1rem;
+  margin: 2rem 0rem 0rem;
+  background-color: #2b241b;
+  padding: 0;
+  height: 100%;
+  width: 8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 /* ============================
@@ -378,8 +379,8 @@ html, body {
   /* full width main */
   .main { padding: 0.3rem; }
 
-  /* sidebar -> horizontal bar */
-  .sidebar {
+  /* rightside -> horizontal bar */
+  .rightside {
     width: 100%;
     height: 7rem;
     margin-top: 1.4rem;
@@ -393,15 +394,16 @@ html, body {
     scrollbar-width: none;        /* Firefox hide scrollbar */
     -ms-overflow-style: none;     /* IE hide scrollbar */
   }
-  .sidebar * { flex: 0 0 auto; }
-  .sidebar::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-.sidebar * {
+  .rightside * { flex: 0 0 auto; }
+  .rightside::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+.rightside * {
     flex: 0 0 auto;               /* prevent shrinking/growing */
 }
 
 
-  /* rightside becomes section below main */
-  .rightside { width:100%; margin-top: 1rem; padding: 0.5rem; }
+  /* sidebar becomes section below main */
+  .sidebar { width:100%; margin-top: 1rem; padding: 0.5rem; }
+  
 
   /* monster-profile: disable sticky, let it flow */
   .monster-profile {

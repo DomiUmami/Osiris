@@ -20,20 +20,20 @@ const [hunted, setHunted] = useState(null)
 
       <aside className="sidebar">
    
-      <Agape onHunted={setHunted}/>
       </aside>
 
       <main className="main">
       
       {hunted ? (
-          <PrimaryAmmo monster={hunted} />
-        ) : (
-          <p className='profile-name'>Select a monster...</p>
-        )}
+        <PrimaryAmmo monster={hunted} />
+      ) : (
+        <p className='profile-name'>Select a monster...</p>
+      )}
       </main>
 
       <aside className="rightside">
-    
+      <Agape onHunted={setHunted}/>
+
       </aside>
 
    
